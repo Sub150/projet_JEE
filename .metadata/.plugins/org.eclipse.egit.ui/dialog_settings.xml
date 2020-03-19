@@ -10,14 +10,16 @@
 		<item value="gitlab.univ-lille.fr"/>
 	</list>
 	<list key="CommitDialog.authorValues">
+		<item value="simon.descamps.etu &lt;simon.descamps.etu@univ-lille.fr&gt;"/>
 		<item value="Simon Descamps &lt;simon.descamps.etu@univ-lille.fr&gt;"/>
 	</list>
 	<list key="CommitDialog.committerValues">
+		<item value="simon.descamps.etu &lt;simon.descamps.etu@univ-lille.fr&gt;"/>
 		<item value="Simon Descamps &lt;simon.descamps.etu@univ-lille.fr&gt;"/>
 	</list>
 	<section name="org.eclipse.egit.ui.internal.staging.StagingView">
 		<item key="HORIZONTAL_SASH_FORM_WEIGHT" value="500,500"/>
-		<item key="STAGING_SASH_FORM_WEIGHT" value="500,500"/>
+		<item key="STAGING_SASH_FORM_WEIGHT" value="519,480"/>
 		<item key="sortItemState" value="true"/>
 	</section>
 	<section name="GitCommitMessageComponent">
