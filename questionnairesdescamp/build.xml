@@ -2,9 +2,9 @@
 <project name="questionnaire" default="prepare" basedir=".">
    <!-- Declarations proprietes et classpath -->
       <!-- LIGNES SUIVANTES A MODIFIER : -->
-      <property name="jboss.dir" value="/home/xxxxxx/wildfly-17.0.0.Final" />
+      <property name="jboss.dir" value="C:\Users\Simon\Desktop\wildfly-17.0.1.Final" />
       <!-- ligne suivante : mettre en commentaire si vous n'êtes pas en salle TP Polytech -->
-      <setproxy proxyhost="proxy.polytech-lille.fr" proxyport="3128" /> 
+    <!--  <setproxy proxyhost="proxy.polytech-lille.fr" proxyport="3128" /> -->
       <!-- FIN LIGNES  A MODIFIER : -->
       <property name="jboss.lib.dir" value="${jboss.dir}/lib" />
       <property name="src.dir" value="${basedir}/src" />

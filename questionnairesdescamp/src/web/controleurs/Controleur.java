@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ejb.entites.*;
-import ejb.sessions.*;
+//import ejb.sessions.*;
 
 @WebServlet(value={})
 public class Controleur extends HttpServlet {
@@ -33,7 +33,7 @@ public class Controleur extends HttpServlet {
     String url = request.getRequestURL().toString();
     String maVue ="/index.jsp"; 
 	
-    questionnaire q = new questionnaire();
+    //Questionnaire q = new Questionnaire();
     RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(maVue);
     dispatcher.forward(request,response);
   }
