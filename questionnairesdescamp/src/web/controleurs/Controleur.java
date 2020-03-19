@@ -7,8 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import ejb.sessions.* ;
-import ejb.entites.* ;
+
 
 
 import javax.servlet.RequestDispatcher;
@@ -18,6 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ejb.entites.*;
+import ejb.sessions.*;
 
 @WebServlet(value={})
 public class Controleur extends HttpServlet {
@@ -30,9 +31,9 @@ public class Controleur extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
   throws ServletException, IOException {
     String url = request.getRequestURL().toString();
-    String maVue ="/index.jsp"; // vue par défaut
+    String maVue ="/index.jsp"; 
 	
-
+    questionnaire q = new questionnaire();
     RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(maVue);
     dispatcher.forward(request,response);
   }
