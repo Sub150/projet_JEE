@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ejb.entites.*;
+//import ejb.entites.*;
 //import ejb.sessions.*;
 
 @WebServlet(value={})

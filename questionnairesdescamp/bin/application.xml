@@ -5,5 +5,19 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
  
   <display-name>Questionnaire App</display-name>
   
-</application>
+  <module>
+  	<ejb>questionnaireSessions.jar</ejb>
+  </module>
+  <module>
+  	<ejb>questionnaireEntites.jar</ejb>
+  </module>
+      <module>
+  	<web>
+  		<web-uri>questionnaire.war</web-uri>
+  		<context-root>michel</context-root>
+  	</web>
+  </module>
+  
+
+ </application>
 

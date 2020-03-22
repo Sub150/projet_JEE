@@ -1,5 +1,11 @@
 package ejb.entites;
 
-public class QuestionOuverte extends Question implements  java.io.Serializable {
+import javax.persistence.Entity;
 
+@SuppressWarnings("serial")
+@Entity
+public class QuestionOuverte extends Question implements  java.io.Serializable {
+	
+	public QuestionOuverte() {}
+	
 }
