@@ -15,31 +15,22 @@ import javax.persistence.Table;
 public class Questionnaire implements java.io.Serializable{
 	@Id private String nom;
 	@OneToMany(fetch=FetchType.EAGER) private Set<Question> questions ; 
-	
-	
-	
+		
 	public String getNom() {
 		return nom;
 	}
-
-
 
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
-
-
 	public Set<Question> getQuestions() {
 		return questions;
 	}
 
-
-
 	public void setQuestions(Set<Question> questions) {
 		this.questions = questions;
 	}
-
 
 	public void addQuestion(Question question) {
 		questions.add(question);

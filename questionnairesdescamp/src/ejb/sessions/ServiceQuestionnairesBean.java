@@ -10,9 +10,8 @@ import javax.persistence.Query;
 
 
 import ejb.entites.Question;
-import ejb.entites.QuestionCheckbox;
+import ejb.entites.QuestionFermee;
 import ejb.entites.QuestionOuverte;
-import ejb.entites.QuestionRadio;
 import ejb.entites.Questionnaire;
 import ejb.entites.Reponse;
 
@@ -68,6 +67,16 @@ public class ServiceQuestionnairesBean implements ServiceQuestionnairesRemote, S
 	}
 	
 	@Override
+	public QuestionOuverte getQuestionOuverte(int id) throws QuestionInconnueException{
+		return (QuestionOuverte)getQuestion(id);
+	}
+	
+	@Override
+	public QuestionFermee getQuestionFermee(int id) throws QuestionInconnueException{
+		return (QuestionFermee)getQuestion(id);
+	}
+	
+	@Override
 	public Collection<Question> getQuestions(){
 		String req = "from Question";
 		Query q = em.createQuery(req);
@@ -78,44 +87,59 @@ public class ServiceQuestionnairesBean implements ServiceQuestionnairesRemote, S
 
 	@Override
 	public void addReponse( int question, String reponse, boolean valide ) throws QuestionInconnueException, ReponseDejaAjouteeException {
-		for ( Reponse r : this.getQuestion(question).getReponses())
-		{
-			if (r.getReponse()==reponse) 
+		Reponse rep = new Reponse();
+		if (this.getQuestion(question) instanceof QuestionOuverte) {
+			if (this.getQuestionOuverte(question) != null ) {
 				throw new ReponseDejaAjouteeException();
+			}
+			rep.setValide(true);
+			rep.setReponse(reponse);
+			this.getQuestionOuverte(question).setReponse(rep);
+			em.persist(rep);
+			System.out.println("persist ouverte lol");
 		}
-		Reponse r  = new Reponse();
-		r.setValide(valide);
-		r.setReponse(reponse);
-		this.getQuestion(question).getReponses().add(r);
-		em.persist(r);
+		else if ( this.getQuestion(question) instanceof QuestionFermee ) {
+			for ( Reponse r : this.getQuestionFermee(question).getReponses()) {
+				if ( r.getReponse().equals(reponse)) {
+					throw new ReponseDejaAjouteeException();
+				}
+			}		
+			rep.setValide(valide);
+			rep.setReponse(reponse);
+			this.getQuestionFermee(question).getReponses().add(rep);
+			em.persist(rep);
+			System.out.println("persist fermee lol");
+		
+			
+		}
+		else System.out.println("erreur lol");
 	}
 	
 
 	
 	@Override
-	public void addQuestion(String questionnaire, TypeSpec type, String intitule ) throws QuestionnaireInconnuException, QuestionDejaAjouteeException {
+	public void addQuestion(String questionnaire, TypeSpec type, String intitule, boolean multiple) throws QuestionnaireInconnuException, QuestionDejaAjouteeException {
 		for ( Question q : this.getQuestionnaire(questionnaire).getQuestions() )
 		{
 			if (q.getIntitule()==intitule) 
 				throw new QuestionDejaAjouteeException();
 			
 		}
-		Question q = null;
 		switch(type) {
-		case CHECKBOX:
-			q = new QuestionCheckbox();
-			break;
-		case RADIO:
-			q = new QuestionRadio();
+		case FERMEE:
+			QuestionFermee q1 = new QuestionFermee();
+			q1.setMultiple(multiple);
+			q1.setIntitule(intitule);
+			this.getQuestionnaire(questionnaire).getQuestions().add(q1);
+			em.persist(q1);
 			break;
 		case OUVERTE:
-			q = new QuestionOuverte();
+			QuestionOuverte q2 = new QuestionOuverte();
+			q2.setIntitule(intitule);
+			this.getQuestionnaire(questionnaire).getQuestions().add(q2);
+			em.persist(q2);
 			break;
 		}
-		q.setIntitule(intitule);
-		this.getQuestionnaire(questionnaire).getQuestions().add(q);
-		em.persist(q);
-		
 	}
 		
 

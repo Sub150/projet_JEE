@@ -57,21 +57,21 @@ public class Main {
 			 System.err.println("Questionnaire inconnu");
 		 } 
 		 try {
-			 service.addQuestion("serieTV", TypeSpec.OUVERTE, "Combien de sucres met Jhon Steed dans son the?");
+			 service.addQuestion("serieTV", TypeSpec.OUVERTE, "Combien de sucres met Jhon Steed dans son the?",false);
 		 } catch ( QuestionDejaAjouteeException e) {
 			 System.err.println("Question deja ajoutee");
 		 } catch ( QuestionnaireInconnuException e) {
 			 System.err.println("Question inconnue");
 		 }
 		 try {
-			 service.addQuestion("serieTV", TypeSpec.RADIO, "Quel est le titre original de la serie 'Chapeau Melon et bottes de cuir'");
+			 service.addQuestion("serieTV", TypeSpec.FERMEE, "Quel est le titre original de la serie 'Chapeau Melon et bottes de cuir'",false);
 		 } catch ( QuestionDejaAjouteeException e) {
 			 System.err.println("Question deja ajoutee");
 		 } catch ( QuestionnaireInconnuException e) {
 			 System.err.println("Question inconnue");
 		 }
 		 try {
-			 service.addQuestion("serieTV", TypeSpec.CHECKBOX, "Est-ce que les actrices suivantes ont joue dans la serie 'Chapeau Melon et bottes de cuir'");
+			 service.addQuestion("serieTV", TypeSpec.FERMEE, "Est-ce que les actrices suivantes ont joue dans la serie 'Chapeau Melon et bottes de cuir'",true);
 		 } catch ( QuestionDejaAjouteeException e) {
 			 System.err.println("Question deja ajoutee");
 		 } catch ( QuestionnaireInconnuException e) {
