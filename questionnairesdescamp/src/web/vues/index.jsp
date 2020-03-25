@@ -8,8 +8,15 @@
 </head>
 
 <body>
-<h1> Un titre </h1>
-
+<h1>Choix Questionnaire</h1>
+<form action="afficheQuestionnaire" method="get">
+	<select name="Questionnaire" id="quest">
+		<c:forEach items="${ejb.sessions.ServiceQuestionnaireBean.getQuestionnaires()}" var="q">
+			<option value="${q.nom}">${q.nom}</option>
+		</c:forEach>
+	</select>
+<input type="submit" value="valider" />
+</form>
 </body>
 </html>
     

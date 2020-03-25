@@ -37,7 +37,7 @@ public class Main {
 		 ServiceQuestionnaires service = (ServiceQuestionnaires) obj;
 		 System.out.println("Creation du premier questionnaire");
 		 try {
-			 service.creerQuestionnaire("Questionnaire serieTV");
+			 service.creerQuestionnaire("serieTV");
 		 } catch ( QuestionnaireDejaCreeException e) {
 			 System.err.println("Questionnaire deja cree");
 		 }
@@ -52,36 +52,39 @@ public class Main {
 			 System.out.println("Questionnaire : "+q.getNom());
 		 }
 		 try {
-			 System.out.println("Ajoutons maintenant des questions au questionnaire :"+ service.getQuestionnaire("Questionnaire serieTV").getNom());
+			 System.out.println("Ajoutons maintenant des questions au questionnaire :"+ service.getQuestionnaire("serieTV").getNom());
 		 } catch ( QuestionnaireInconnuException e) {
 			 System.err.println("Questionnaire inconnu");
 		 } 
 		 try {
-			 service.addQuestion("Questionnaire serieTV", TypeSpec.OUVERTE, "Combien de sucres met Jhon Steed dans son the?");
+			 service.addQuestion("serieTV", TypeSpec.OUVERTE, "Combien de sucres met Jhon Steed dans son the?");
 		 } catch ( QuestionDejaAjouteeException e) {
 			 System.err.println("Question deja ajoutee");
 		 } catch ( QuestionnaireInconnuException e) {
 			 System.err.println("Question inconnue");
 		 }
 		 try {
-			 service.addQuestion("Questionnaire serieTV", TypeSpec.RADIO, "Quel est le titre original de la serie 'Chapeau Melon et bottes de cuir'");
+			 service.addQuestion("serieTV", TypeSpec.RADIO, "Quel est le titre original de la serie 'Chapeau Melon et bottes de cuir'");
 		 } catch ( QuestionDejaAjouteeException e) {
 			 System.err.println("Question deja ajoutee");
 		 } catch ( QuestionnaireInconnuException e) {
 			 System.err.println("Question inconnue");
 		 }
 		 try {
-			 service.addQuestion("Questionnaire serieTV", TypeSpec.CHECKBOX, "Est-ce que les actrices suivantes ont joue dans la serie 'Chapeau Melon et bottes de cuir'");
+			 service.addQuestion("serieTV", TypeSpec.CHECKBOX, "Est-ce que les actrices suivantes ont joue dans la serie 'Chapeau Melon et bottes de cuir'");
 		 } catch ( QuestionDejaAjouteeException e) {
 			 System.err.println("Question deja ajoutee");
 		 } catch ( QuestionnaireInconnuException e) {
 			 System.err.println("Question inconnue");
 		 }
 		 
-		 System.out.println("Affichons la liste des questions");
-		 for ( Question q : service.getQuestions() )
+		 System.out.println("Affichons la liste des questions de serieTV");
+		 try {
+			 for ( Question q : service.getQuestionnaire("serieTV").getQuestions() )
 				 System.out.println("Question : "+q.getIntitule());
-		 
+		 } catch (QuestionnaireInconnuException e) {
+			 System.err.println("Questionnaire inconnu");
+		 }
 		 
 		 
 		 System.out.println("Ajoutons maintenant des reponses aux questions");

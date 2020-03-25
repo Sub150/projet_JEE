@@ -14,7 +14,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
       <module>
   	<web>
   		<web-uri>questionnaire.war</web-uri>
-  		<context-root>michel</context-root>
+  		<context-root>projet</context-root>
   	</web>
   </module>
   

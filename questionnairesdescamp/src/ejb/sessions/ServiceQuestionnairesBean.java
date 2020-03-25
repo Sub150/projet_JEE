@@ -113,6 +113,7 @@ public class ServiceQuestionnairesBean implements ServiceQuestionnairesRemote, S
 			break;
 		}
 		q.setIntitule(intitule);
+		this.getQuestionnaire(questionnaire).getQuestions().add(q);
 		em.persist(q);
 		
 	}
