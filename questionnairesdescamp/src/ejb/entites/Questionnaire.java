@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 public class Questionnaire implements java.io.Serializable{
 	@Id private String nom;
-	@OneToMany(fetch=FetchType.EAGER) Set <Question> questions ; 
+	@OneToMany(fetch=FetchType.EAGER) private Set<Question> questions ; 
 	
 	
 	

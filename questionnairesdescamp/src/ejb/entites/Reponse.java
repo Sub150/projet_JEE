@@ -8,10 +8,19 @@ import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity 
 public class Reponse implements java.io.Serializable {
-	@GeneratedValue @Id int num;
-	public String reponse;
+	@GeneratedValue @Id private int num;
+	private String reponse;
+	private boolean valide;
 	
 	
+	public boolean isValide() {
+		return valide;
+	}
+
+	public void setValide(boolean valide) {
+		this.valide = valide;
+	}
+
 	public String getReponse() {
 		return reponse;
 	}

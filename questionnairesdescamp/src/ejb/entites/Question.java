@@ -17,8 +17,8 @@ import javax.persistence.Table;
 public abstract class Question implements java.io.Serializable {
 	@GeneratedValue @Id private int num;
 	private String intitule;
-	@OneToMany(fetch=FetchType.EAGER) private Set<Reponse> reponses = new TreeSet<Reponse>();
-	@OneToMany(fetch=FetchType.EAGER) private Set<Reponse> bonnesReponses = new TreeSet<Reponse>();
+	@OneToMany(fetch=FetchType.EAGER) private Set<Reponse> reponses;
+
 	
 	public int getNum() {
 		System.out.println("test");
@@ -35,13 +35,6 @@ public abstract class Question implements java.io.Serializable {
 		this.intitule = intitule;
 	}
 
-	public Question() {}
-	public Set<Reponse> getBonnesReponses() {
-		return bonnesReponses;
-	}
-	public void setBonnesReponses(Set<Reponse> bonnesReponses) {
-		this.bonnesReponses = bonnesReponses;
-	}
 	public Set<Reponse> getReponses() {
 		return reponses;
 	}
@@ -49,5 +42,5 @@ public abstract class Question implements java.io.Serializable {
 		this.reponses = reponses;
 	}
 	
-	
+	public Question() {}
 }

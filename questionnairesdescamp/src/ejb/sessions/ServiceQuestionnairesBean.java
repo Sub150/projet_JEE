@@ -1,7 +1,7 @@
 package ejb.sessions;
 
 import java.util.Collection;
-
+import java.util.TreeSet;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -51,6 +51,15 @@ public class ServiceQuestionnairesBean implements ServiceQuestionnairesRemote, S
 		return result;
 	}
 	
+	@Override
+	public Collection<Reponse> getReponses() {
+		String req = "from Reponse";
+		Query q = em.createQuery(req);
+		Collection<Reponse> result = (Collection<Reponse>)q.getResultList();
+		return result;
+	}
+	
+	@Override
 	public Question getQuestion(int id) throws QuestionInconnueException {
 		Question q = (Question) em.find(Question.class, id);
 		if (q==null) 
@@ -58,40 +67,36 @@ public class ServiceQuestionnairesBean implements ServiceQuestionnairesRemote, S
 		return q;
 	}
 	
+	@Override
+	public Collection<Question> getQuestions(){
+		String req = "from Question";
+		Query q = em.createQuery(req);
+		Collection<Question> result = (Collection<Question>)q.getResultList();
+		return result;
+	}
+	
 
 	@Override
-	public void addReponse( String reponse ) throws QuestionInconnueException, ReponseDejaAjouteeException {
-		for ( Reponse r : this.getQuestion(question).getReponses() )
+	public void addReponse( int question, String reponse, boolean valide ) throws QuestionInconnueException, ReponseDejaAjouteeException {
+		for ( Reponse r : this.getQuestion(question).getReponses())
 		{
 			if (r.getReponse()==reponse) 
 				throw new ReponseDejaAjouteeException();
-			
 		}
 		Reponse r  = new Reponse();
+		r.setValide(valide);
 		r.setReponse(reponse);
 		this.getQuestion(question).getReponses().add(r);
 		em.persist(r);
 	}
 	
-	@Override
-	public void addBonneReponse(int question, String reponse ) throws QuestionInconnueException, ReponseDejaAjouteeException, ReponseInconnueException {
-		Reponse rep = null;
-		for ( Reponse r : this.getQuestion(question).getReponses() )
-		{
-			if (r.getReponse()==reponse) 
-				rep = r;
-		}
-		if ( rep == null )
-			throw new ReponseInconnueException();
-		this.getQuestion(question).getBonnesReponses().add(rep);
-		em.persist(rep);
-	}
+
 	
 	@Override
-	public void addQuestion(String questionnaire, int id, TypeSpec type, String intitule ) throws QuestionnaireInconnuException, QuestionDejaAjouteeException {
+	public void addQuestion(String questionnaire, TypeSpec type, String intitule ) throws QuestionnaireInconnuException, QuestionDejaAjouteeException {
 		for ( Question q : this.getQuestionnaire(questionnaire).getQuestions() )
 		{
-			if (q.getNum()==id) 
+			if (q.getIntitule()==intitule) 
 				throw new QuestionDejaAjouteeException();
 			
 		}
@@ -107,10 +112,7 @@ public class ServiceQuestionnairesBean implements ServiceQuestionnairesRemote, S
 			q = new QuestionOuverte();
 			break;
 		}
-		q.setNum(id);
 		q.setIntitule(intitule);
-		q.setReponses(null);
-		q.setBonnesReponses(null);
 		em.persist(q);
 		
 	}

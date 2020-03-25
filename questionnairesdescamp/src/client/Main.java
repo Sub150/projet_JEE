@@ -4,6 +4,7 @@ package client ;
  import javax.naming.InitialContext;
 import javax.naming.NamingException ;
 
+import ejb.entites.Question;
 import ejb.entites.Questionnaire;
 import ejb.entites.Reponse;
 import ejb.sessions.QuestionDejaAjouteeException;
@@ -36,7 +37,7 @@ public class Main {
 		 ServiceQuestionnaires service = (ServiceQuestionnaires) obj;
 		 System.out.println("Creation du premier questionnaire");
 		 try {
-			 service.creerQuestionnaire("Le premier questionnaire");
+			 service.creerQuestionnaire("Questionnaire serieTV");
 		 } catch ( QuestionnaireDejaCreeException e) {
 			 System.err.println("Questionnaire deja cree");
 		 }
@@ -51,34 +52,55 @@ public class Main {
 			 System.out.println("Questionnaire : "+q.getNom());
 		 }
 		 try {
-			 System.out.println("Ajoutons maintenant des questions au questionnaire :"+ service.getQuestionnaire("Le second questionnaire").getNom());
+			 System.out.println("Ajoutons maintenant des questions au questionnaire :"+ service.getQuestionnaire("Questionnaire serieTV").getNom());
 		 } catch ( QuestionnaireInconnuException e) {
 			 System.err.println("Questionnaire inconnu");
 		 } 
 		 try {
-			 service.addQuestion("Le second questionnaire", 1, TypeSpec.OUVERTE, "Combien de questionnaires avons nous cree?");
+			 service.addQuestion("Questionnaire serieTV", TypeSpec.OUVERTE, "Combien de sucres met Jhon Steed dans son the?");
 		 } catch ( QuestionDejaAjouteeException e) {
 			 System.err.println("Question deja ajoutee");
 		 } catch ( QuestionnaireInconnuException e) {
 			 System.err.println("Question inconnue");
 		 }
 		 try {
-			 service.addReponse(1, "2");
-		 } catch ( ReponseDejaAjouteeException e) {
-			 System.err.println("Reponse deja ajoutee");
-		 } catch ( QuestionInconnueException e) {
-			 System.err.println("Reponse deja ajoutee");
+			 service.addQuestion("Questionnaire serieTV", TypeSpec.RADIO, "Quel est le titre original de la serie 'Chapeau Melon et bottes de cuir'");
+		 } catch ( QuestionDejaAjouteeException e) {
+			 System.err.println("Question deja ajoutee");
+		 } catch ( QuestionnaireInconnuException e) {
+			 System.err.println("Question inconnue");
 		 }
 		 try {
-			 service.addBonneReponse(1, "2");
+			 service.addQuestion("Questionnaire serieTV", TypeSpec.CHECKBOX, "Est-ce que les actrices suivantes ont joue dans la serie 'Chapeau Melon et bottes de cuir'");
+		 } catch ( QuestionDejaAjouteeException e) {
+			 System.err.println("Question deja ajoutee");
+		 } catch ( QuestionnaireInconnuException e) {
+			 System.err.println("Question inconnue");
+		 }
+		 
+		 System.out.println("Affichons la liste des questions");
+		 for ( Question q : service.getQuestions() )
+				 System.out.println("Question : "+q.getIntitule());
+		 
+		 
+		 
+		 System.out.println("Ajoutons maintenant des reponses aux questions");
+		 
+		 try {
+			 service.addReponse(1, "3", true);
+			 service.addReponse(2, "Dexter", false);
+			 service.addReponse(2, "Wild wild west", false);
+			 service.addReponse(2, "The Avengers", true);
+			 service.addReponse(3, "Linda Thornson", true);
+			 service.addReponse(3, "Uma Thruman", false);
+			 service.addReponse(3, "Diana Rigg", true);
 		 } catch ( ReponseDejaAjouteeException e) {
 			 System.err.println("Reponse deja ajoutee");
 		 } catch ( QuestionInconnueException e) {
 			 System.err.println("Reponse deja ajoutee");
-		 } catch ( ReponseInconnueException e) {
-			 System.err.println("Reponse inconnue");
 		 }
-	 
+
+	
 	 } catch (NamingException e) {
 		System.err.println("Erreur:" + e.getMessage());
 	 }
