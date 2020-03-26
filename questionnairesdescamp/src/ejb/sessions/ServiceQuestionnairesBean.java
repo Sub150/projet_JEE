@@ -84,7 +84,14 @@ public class ServiceQuestionnairesBean implements ServiceQuestionnairesRemote, S
 				throw new ReponseDejaAjouteeException();
 		}
 		Reponse r  = new Reponse();
+		if (this.getQuestion(question) instanceof QuestionOuverte) {
+			if (this.getQuestion(question).getReponses().size() != 0 )
+				throw new ReponseDejaAjouteeException();
+			else r.setValide(true);
+		}
+		else {
 		r.setValide(valide);
+		}
 		r.setReponse(reponse);
 		this.getQuestion(question).getReponses().add(r);
 		em.persist(r);

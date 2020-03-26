@@ -7,7 +7,6 @@
     <fullyQualifiedTypeName name="javax.persistence.Table"/>
     <fullyQualifiedTypeName name="java.awt.List"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="javax.persistence.OneToOne"/>
     <fullyQualifiedTypeName name="javax.persistence.Entity"/>
     <fullyQualifiedTypeName name="java.util.Collection"/>
     <fullyQualifiedTypeName name="java.util.Set"/>
@@ -23,7 +22,6 @@
     <fullyQualifiedTypeName name="javax.persistence.Id"/>
     <fullyQualifiedTypeName name="ejb.sessions.ServiceQuestionnaires"/>
     <fullyQualifiedTypeName name="ejb.sessions.QuestionnaireDejaCreeException"/>
-    <fullyQualifiedTypeName name="ejb.entites.Questionnaire"/>
     <fullyQualifiedTypeName name="ejb.sessions.QuestionnaireInconnuException"/>
     <fullyQualifiedTypeName name="ejb.entites.Reponse"/>
     <fullyQualifiedTypeName name="ejb.sessions.ServiceQuestionnaires.TypeSpec"/>
@@ -33,4 +31,9 @@
     <fullyQualifiedTypeName name="ejb.sessions.QuestionInconnueException"/>
     <fullyQualifiedTypeName name="java.util.TreeSet"/>
     <fullyQualifiedTypeName name="ejb.entites.Question"/>
+    <fullyQualifiedTypeName name="ejb.entites.Questionnaire"/>
+    <fullyQualifiedTypeName name="ejb.sessions.ServiceQuestionnairesBean"/>
+    <fullyQualifiedTypeName name="ejb.sessions.ServiceQuestionnairesRemote"/>
+    <fullyQualifiedTypeName name="javax.persistence.OneToOne"/>
+    <fullyQualifiedTypeName name="ejb.entites.QuestionFermee"/>
 </qualifiedTypeNameHistroy>

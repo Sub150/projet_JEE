@@ -72,6 +72,7 @@ public class Main {
 		 }
 		 try {
 			 service.addQuestion("serieTV", TypeSpec.CHECKBOX, "Est-ce que les actrices suivantes ont joue dans la serie 'Chapeau Melon et bottes de cuir'");
+			 service.addQuestion("serieTV", TypeSpec.CHECKBOX, "prenom lol?");
 		 } catch ( QuestionDejaAjouteeException e) {
 			 System.err.println("Question deja ajoutee");
 		 } catch ( QuestionnaireInconnuException e) {
@@ -90,17 +91,21 @@ public class Main {
 		 System.out.println("Ajoutons maintenant des reponses aux questions");
 		 
 		 try {
+			 System.out.println("0");
 			 service.addReponse(1, "3", true);
+			 System.out.println("1");
 			 service.addReponse(2, "Dexter", false);
-			 service.addReponse(2, "Wild wild west", false);
-			 service.addReponse(2, "The Avengers", true);
-			 service.addReponse(3, "Linda Thornson", true);
-			 service.addReponse(3, "Uma Thruman", false);
-			 service.addReponse(3, "Diana Rigg", true);
+			 System.out.println("2");
+			 service.addReponse(2, "Wild wild west", false); System.out.println("3");
+			 service.addReponse(2, "The Avengers", true); System.out.println("4");
+			 service.addReponse(3, "Linda Thornson", true); System.out.println("5");
+			 service.addReponse(3, "Uma Thruman", false);System.out.println("6");
+			 service.addReponse(3, "Diana Rigg", true); System.out.println("7");
+			 service.addReponse(4, "2bitefrite", true); System.out.println("8");
 		 } catch ( ReponseDejaAjouteeException e) {
 			 System.err.println("Reponse deja ajoutee");
 		 } catch ( QuestionInconnueException e) {
-			 System.err.println("Reponse deja ajoutee");
+			 System.err.println("Question inconnue");
 		 }
 
 	
