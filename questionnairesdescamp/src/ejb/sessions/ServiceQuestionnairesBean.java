@@ -142,9 +142,7 @@ public class ServiceQuestionnairesBean implements ServiceQuestionnairesRemote, S
 		int cpt = 0;
 		for (String r : reponses) {
 			for ( Reponse rp : q.getReponses()) {
-				System.out.println("rp"+rp.getReponse()+rp.isValide());
 				if ( r.equals(rp.getReponse()) && !(rp.isValide()) ) {
-					System.out.println("r"+r+"=="+rp.getReponse()+" "+rp.isValide());
 					return false;
 				}
 				else if ( r.equals(rp.getReponse()) && (rp.isValide()) ) {
