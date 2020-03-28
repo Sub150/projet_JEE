@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="style.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Affichage questionnaire</title>
 </head>
@@ -42,31 +43,34 @@
 						</c:if>
 				</c:forEach>
 			</ul>
-	<h1>Ajouter une question au questionnaire</h1>
-	<form action="addQuestionQuestionnaire" method="get">
-		<input type="hidden" name="nomQ" value="${requestScope.nomQ}"/>
-		<h3>Intitule question</h3>
-		<input type="text" required value="" name="intitule" />
-		<h3>Type</h3>
-		Question ouverte ( une seule reponse )<input type="radio"  name="type" value="OUVERTE"></br>
-		Question a choix multiple <input type="radio"  name="type" value="CHECKBOX" checked></br>
-		Question a reponse unique <input type="radio"  name="type" value="RADIO"></br>
-	<input type="submit" value="Ajouter la question" />
-	</form>
-	
-	<h1>Ajouter une reponse à  une question</h1>
-	<form action="addReponseQuestion" method="get">
-		<h3>Choix question</h3>
-		<c:forEach items="${requestScope.ListQuest}" var="quest"> 
-					<input type="radio"  name="choix" value="${quest.num}" checked>${quest.intitule}</br>
-		</c:forEach>
-		
-		<h3>Type de reponse</h3>
-		<input type="text" name="reponse">
-		<input type="radio"  name="valide" value="true" checked>Bonne reponse
-		<input type="radio"  name="valide" value="false">Mauvaise reponse </br>
-	<input type="submit" value="Ajouter la reponse" />
-	</form>
+	<div id=gauche>		
+		<h1>Ajouter une question au questionnaire</h1>
+		<form action="addQuestionQuestionnaire" method="get">
+			<input type="hidden" name="nomQ" value="${requestScope.nomQ}"/>
+			<h3>Intitule question</h3>
+			<input type="text" required value="" name="intitule" />
+			<h3>Type</h3>
+			Question ouverte ( une seule reponse )<input type="radio"  name="type" value="OUVERTE"></br>
+			Question a choix multiple <input type="radio"  name="type" value="CHECKBOX" checked></br>
+			Question a reponse unique <input type="radio"  name="type" value="RADIO"></br>
+		<input type="submit" value="Ajouter la question" class="bouton" />
+		</form>
+	</div>
+	<div id=droite>	
+		<h1>Ajouter une reponse à  une question</h1>
+		<form action="addReponseQuestion" method="get">
+			<h3>Choix question</h3>
+			<c:forEach items="${requestScope.ListQuest}" var="quest"> 
+						<input type="radio"  name="choix" value="${quest.num}" checked>${quest.intitule}</br>
+			</c:forEach>
+			
+			<h3>Type de reponse</h3>
+			<input type="text" name="reponse">
+			<input type="radio"  name="valide" value="true" checked>Bonne reponse
+			<input type="radio"  name="valide" value="false">Mauvaise reponse </br>
+		<input type="submit" value="Ajouter la reponse"  class="bouton"/>
+		</form>
+	</div>
 	
 		
 			

@@ -1,0 +1,41 @@
+body{
+text-align: center;	
+width:80%;
+margin-left:auto;
+margin-right:auto;
+}
+#largeur{
+	width:80%;
+}
+#gauche{
+	width:40%;
+	float:left;
+	margin:0;
+}
+
+#droite {
+	width:40%;
+	float:right;
+	margin:0;
+}
+
+ul li {
+	text-align: center;
+	list-style: none;
+}
+
+
+h1 {
+  color: #004080;
+}
+
+.bouton{
+	margin-top : 3px;
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #668ad8;
+    color: #FFF;
+    border-bottom: solid 4px #004080;
+    border-radius: 3px;
+}

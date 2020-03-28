@@ -37,4 +37,6 @@
     <fullyQualifiedTypeName name="ejb.sessions.ServiceQuestionnairesBean"/>
     <fullyQualifiedTypeName name="ejb.entites.Reponse"/>
     <fullyQualifiedTypeName name="ejb.sessions.ServiceQuestionnaires.TypeSpec"/>
+    <fullyQualifiedTypeName name="ejb.sessions.UneReponseParQuestionOuverteException"/>
+    <fullyQualifiedTypeName name="ejb.sessions.ReponseValideUniquementException"/>
 </qualifiedTypeNameHistroy>

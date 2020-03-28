@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head> 
+	<link rel="stylesheet" href="style.css">
   <title>questionnaire</title>
 </head>
 
@@ -44,7 +45,7 @@
 				</c:if>
 		</c:forEach>
 	</ul>
-	<input type="submit" value="valider" />
+	<input type="submit" value="valider" class="bouton" />
 	</form>
 </c:if>
 
