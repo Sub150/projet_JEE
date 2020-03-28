@@ -1,7 +1,6 @@
 package ejb.entites;
 
 import java.util.Set;
-import java.util.TreeSet;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,8 +20,6 @@ public abstract class Question implements java.io.Serializable {
 
 	
 	public int getNum() {
-		System.out.println("test");
-		
 		return num;
 	}
 	public void setNum(int num) {

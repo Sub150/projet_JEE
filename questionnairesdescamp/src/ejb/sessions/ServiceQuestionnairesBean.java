@@ -2,8 +2,7 @@ package ejb.sessions;
 
 
 import java.util.Collection;
-import java.util.TreeSet;
-import java.util.Set;
+
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -80,7 +79,7 @@ public class ServiceQuestionnairesBean implements ServiceQuestionnairesRemote, S
 	
 
 	@Override
-	public void addReponse( int question, String reponse, boolean valide ) throws QuestionInconnueException, ReponseDejaAjouteeException {
+	public void addReponse( int question, String reponse, boolean valide ) throws QuestionInconnueException, ReponseDejaAjouteeException, UneReponseParQuestionOuverteException, ReponseValideUniquementException, UneReponseValideParQuesitonRadioException {
 		for ( Reponse r : this.getQuestion(question).getReponses())
 		{
 			if (r.getReponse()==reponse) 
@@ -89,8 +88,16 @@ public class ServiceQuestionnairesBean implements ServiceQuestionnairesRemote, S
 		Reponse r  = new Reponse();
 		if (this.getQuestion(question) instanceof QuestionOuverte) {
 			if (this.getQuestion(question).getReponses().size() != 0 )
-				throw new ReponseDejaAjouteeException();
-			else r.setValide(true);
+				throw new UneReponseParQuestionOuverteException();
+			else if (!valide)
+				throw new ReponseValideUniquementException();
+			r.setValide(true);
+		}
+		else if ( (this.getQuestion(question) instanceof QuestionRadio) ) {
+			for (Reponse rep : this.getQuestion(question).getReponses()) 
+				if (valide && rep.isValide())
+					throw new UneReponseValideParQuesitonRadioException();
+			
 		}
 		else {
 		r.setValide(valide);

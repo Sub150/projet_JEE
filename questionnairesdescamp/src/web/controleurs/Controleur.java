@@ -22,7 +22,10 @@ import ejb.sessions.QuestionDejaAjouteeException;
 import ejb.sessions.QuestionInconnueException;
 import ejb.sessions.QuestionnaireInconnuException;
 import ejb.sessions.ReponseDejaAjouteeException;
+import ejb.sessions.ReponseValideUniquementException;
 import ejb.sessions.ServiceQuestionnairesLocal;
+import ejb.sessions.UneReponseParQuestionOuverteException;
+import ejb.sessions.UneReponseValideParQuesitonRadioException;
 import ejb.sessions.ServiceQuestionnaires.TypeSpec;
 
 //import ejb.entites.*;
@@ -40,9 +43,9 @@ public class Controleur extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
   throws ServletException, IOException {
 	  String url = request.getRequestURL().toString();
-	  String maVue = "/index.jsp"; // default
+	  String maVue = "/index.html"; // default
 	  if (url.endsWith("/index")) {
-		maVue = "/index.jsp";
+		maVue = "/index.html";
 	  }
 	  else if (url.endsWith("/admin")) {
 		  maVue=("/admin.html");
@@ -83,6 +86,12 @@ public class Controleur extends HttpServlet {
 			request.setAttribute("error", "Question inconnue. Cette erreur ne devrait pas arriver...");
 		} catch (ReponseDejaAjouteeException e) {
 			request.setAttribute("error", "Reponse deja ajoutee.");
+		} catch (UneReponseParQuestionOuverteException e) {
+			request.setAttribute("error", "On ne peut ajouter qu'une seule reponse par question ouverte");
+		} catch (ReponseValideUniquementException e) {
+			request.setAttribute("error", "On ne peut ajouter qu'un bonne reponse a une question ouverte");
+		} catch (UneReponseValideParQuesitonRadioException e) {
+			request.setAttribute("error","On ne peut ajotuer qu'une seule bonne reponse par question radio" );
 		}
 	  }
 	  else if (url.endsWith("/addQuestionQuestionnaire")) {

@@ -16,7 +16,7 @@ public interface ServiceQuestionnaires {
 	
 	public void addQuestion(String questionnaire, TypeSpec type, String intitule )  throws QuestionnaireInconnuException, QuestionDejaAjouteeException ;
 	
-	public void addReponse( int question, String reponse, boolean valide ) throws QuestionInconnueException, ReponseDejaAjouteeException ;
+	public void addReponse( int question, String reponse, boolean valide ) throws QuestionInconnueException, ReponseDejaAjouteeException, UneReponseParQuestionOuverteException, ReponseValideUniquementException, UneReponseValideParQuesitonRadioException ;
 	
 	public Question getQuestion(int id) throws QuestionInconnueException;
 	

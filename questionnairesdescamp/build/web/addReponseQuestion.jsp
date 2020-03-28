@@ -3,22 +3,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="style.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Affichage questionnaire</title>
+<title>Ajout reponse question</title>
 </head>
 <body>
 <c:if test = "${not empty requestScope.error}">
-	<h3>${requestScope.error}</h3>
+	<h1>${requestScope.error}</h1>
 </c:if>
-<c:if test = "${not empty requestScope.error}">>
-	<h1> Affichage du questionnaire ${requestScope.nomQ}</h1>
-	<ul>
-		<c:forEach items="${requestScope.listQuest}" var="quest">
-			<li><h3>1 question</h3></li>
-		</c:forEach>
-	</ul>
+<c:if test = "${empty requestScope.error}">
+	<h1>Reponse "${requestScope.reponse}" ajoutée</h1>
+	Vous allez être redirigé. 
+	<meta http-equiv="refresh" content="5;URL=http://localhost:8080/projet/admin">
 </c:if>
-
-
 </body>
 </html>

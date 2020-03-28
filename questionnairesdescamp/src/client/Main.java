@@ -13,9 +13,12 @@ import ejb.sessions.QuestionnaireDejaCreeException;
 import ejb.sessions.QuestionnaireInconnuException;
 import ejb.sessions.ReponseDejaAjouteeException;
 import ejb.sessions.ReponseInconnueException;
+import ejb.sessions.ReponseValideUniquementException;
 import ejb.sessions.ServiceQuestionnaires;
 import ejb.sessions.ServiceQuestionnaires.TypeSpec;
 import ejb.sessions.ServiceQuestionnairesRemote;
+import ejb.sessions.UneReponseParQuestionOuverteException;
+import ejb.sessions.UneReponseValideParQuesitonRadioException;
 
 
 
@@ -72,7 +75,6 @@ public class Main {
 		 }
 		 try {
 			 service.addQuestion("serieTV", TypeSpec.CHECKBOX, "Est-ce que les actrices suivantes ont joue dans la serie 'Chapeau Melon et bottes de cuir'");
-			 service.addQuestion("serieTV", TypeSpec.CHECKBOX, "prenom lol?");
 		 } catch ( QuestionDejaAjouteeException e) {
 			 System.err.println("Question deja ajoutee");
 		 } catch ( QuestionnaireInconnuException e) {
@@ -101,11 +103,17 @@ public class Main {
 			 service.addReponse(3, "Linda Thornson", true); System.out.println("5");
 			 service.addReponse(3, "Uma Thruman", false);System.out.println("6");
 			 service.addReponse(3, "Diana Rigg", true); System.out.println("7");
-			 service.addReponse(4, "2bitefrite", true); System.out.println("8");
+	
 		 } catch ( ReponseDejaAjouteeException e) {
 			 System.err.println("Reponse deja ajoutee");
 		 } catch ( QuestionInconnueException e) {
 			 System.err.println("Question inconnue");
+		 } catch (UneReponseParQuestionOuverteException e) {
+			 System.err.println("On ne peut ajouter qu'une reponse par question ouverte");
+		 } catch (ReponseValideUniquementException e) {
+			 System.err.println("On ne peut ajouter qu'une reponse valide a une question ouverte");
+		 } catch (UneReponseValideParQuesitonRadioException e) {
+			 System.err.println("On ne peut ajouter qu'une seule reponse valide a une question radio");
 		 }
 
 	
