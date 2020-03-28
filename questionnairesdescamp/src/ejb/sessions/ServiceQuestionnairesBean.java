@@ -1,7 +1,9 @@
 package ejb.sessions;
 
+
 import java.util.Collection;
 import java.util.TreeSet;
+import java.util.Set;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,6 +17,7 @@ import ejb.entites.QuestionOuverte;
 import ejb.entites.QuestionRadio;
 import ejb.entites.Questionnaire;
 import ejb.entites.Reponse;
+
 
 @Stateless
 public class ServiceQuestionnairesBean implements ServiceQuestionnairesRemote, ServiceQuestionnairesLocal {
@@ -124,7 +127,28 @@ public class ServiceQuestionnairesBean implements ServiceQuestionnairesRemote, S
 		em.persist(q);
 		
 	}
-		
+	
+	@Override
+	public boolean testReponse(int num, String[] reponses) throws QuestionInconnueException {
+		Question q = this.getQuestion(num);
+		int cpt = 0;
+		for (String r : reponses) {
+			for ( Reponse rp : q.getReponses()) {
+				if ( r.equals(rp.getReponse()) && !(rp.isValide()) ) {
+					return false;
+				}
+				else if ( r.equals(rp.getReponse()) && (rp.isValide()) ) {
+					cpt ++;
+				}
+			}
+		}
+		int nbRep=0;
+		for (Reponse rp : q.getReponses()) {
+			if (rp.isValide())
+				nbRep++;
+		}
+		return (nbRep==cpt);
+	}
 
 		
 

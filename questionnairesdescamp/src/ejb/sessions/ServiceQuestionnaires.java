@@ -24,6 +24,8 @@ public interface ServiceQuestionnaires {
 	
 	public Collection<Reponse> getReponses();
 	
+	public boolean testReponse(int num, String[] reponses)throws QuestionInconnueException;
+	
 	public enum TypeSpec {OUVERTE, RADIO, CHECKBOX} ;
 }
 	
