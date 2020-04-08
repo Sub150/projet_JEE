@@ -14,17 +14,26 @@ public interface ServiceQuestionnaires {
 	
 	public Collection<Questionnaire> getQuestionnaires() ;
 	
-	public void addQuestion(String questionnaire, TypeSpec type, String intitule )  throws QuestionnaireInconnuException, QuestionDejaAjouteeException ;
+	public void addQuestionFermee(String questionnaire, TypeSpec type, String intitule )  throws QuestionnaireInconnuException, QuestionDejaAjouteeException ;
 	
-	public void addReponse( int question, String reponse, boolean valide ) throws QuestionInconnueException, ReponseDejaAjouteeException, UneReponseParQuestionOuverteException, ReponseValideUniquementException, UneReponseValideParQuesitonRadioException ;
+	public void addQuestionnaire(String questionnaire) throws QuestionnaireDejaCreeException;
 	
-	public Question getQuestion(int id) throws QuestionInconnueException;
+	public void addQuestionOuverte(String questionnaire, String intitule, String reponse) throws QuestionnaireInconnuException, QuestionDejaAjouteeException; //Ajouter au bean
 	
-	public Collection<Question> getQuestions();
+	public void addReponseFermee( int question, String reponse, boolean valide ) throws QuestionInconnueException, ReponseDejaAjouteeException, UneReponseValideParQuesitonRadioException ;
+	
+	public QuestionFermee getQuestionFermee(int id) throws QuestionInconnueException;
+
+	public QuestionOuverte getQuestionOuverte(int id) throws QuestionInconnueException ;
+	
+	public Collection<QuestionFermee> getQuestionsFermees();
 	
 	public Collection<Reponse> getReponses();
 	
-	public boolean testReponse(int num, String[] reponses)throws QuestionInconnueException;
+	public boolean testReponseFermee(int num, String[] reponses)throws QuestionInconnueException;
+	
+	public boolean testReponseOuverte(int num, String reponse) throws QuestionInconnueException ; 
+	
 	
 	public enum TypeSpec {OUVERTE, RADIO, CHECKBOX} ;
 }

@@ -10,10 +10,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
-@Table (name="Question")
+@Table (name="QuestionFermee")
 @Entity 
 @SuppressWarnings("serial")
-public abstract class Question implements java.io.Serializable {
+public abstract class QuestionFermee implements java.io.Serializable {
 	@GeneratedValue @Id private int num;
 	private String intitule;
 	@OneToMany(fetch=FetchType.EAGER) private Set<Reponse> reponses;
@@ -39,5 +39,5 @@ public abstract class Question implements java.io.Serializable {
 		this.reponses = reponses;
 	}
 	
-	public Question() {}
+	public QuestionFermee() {}
 }

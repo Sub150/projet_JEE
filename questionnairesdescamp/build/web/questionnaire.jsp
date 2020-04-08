@@ -13,6 +13,7 @@
 	<h1>${requestScope.Error}</h1>
 </c:if>
 <c:if test = "${empty requestScope.Error}">
+
 	
 </c:if>
 <c:if test = "${not empty requestScope.nomQ}">
@@ -20,30 +21,33 @@
 	<form action="reponseQuestionnaire" method="get">
 	<input type="hidden" name="nomQ" value="${requestScope.nomQ}" />
 	<ul>
-		<c:forEach items="${requestScope.ListQuest}" var="quest"> 
+		<c:forEach items="${requestScope.ListQuestF}" var="quest"> 
 			<li><h3>${quest.intitule}</h3></li>
-				<c:if  test = "${quest['class'].name.equals('ejb.entites.QuestionOuverte')}">
-					<ul>
-						<c:forEach items="${quest.reponses}" var="r">
-							<input type="text" required name="${quest.num}" />
-						</c:forEach>
-					</ul>
-				</c:if>
 				<c:if  test = "${quest['class'].name.equals('ejb.entites.QuestionRadio')}">
 					
 						<c:forEach items="${quest.reponses}" var="r">
-							<input type="radio" name="${quest.num}" value="${r.reponse}">${r.reponse}</br>
+							<input type="radio" required name="${quest.num}" value="${r.reponse}">${r.reponse}</br>
 						</c:forEach>
 					
 				</c:if>
 				<c:if  test = "${quest['class'].name.equals('ejb.entites.QuestionCheckbox')}">
 					
 						<c:forEach items="${quest.reponses}" var="r">
-							<input type="checkbox" name="${quest.num}" value="${r.reponse}">${r.reponse}</br>
+							<input type="checkbox"  name="${quest.num}" value="${r.reponse}">${r.reponse}</br>
 						</c:forEach>
 					
 				</c:if>
 		</c:forEach>
+		
+		<c:forEach items="${requestScope.ListQuestO}" var="quest"> 
+			<li><h3>${quest.intitule}</h3></li>
+					<ul>
+						
+						<input type="text" required name="${quest.num}" />
+						
+					</ul>
+		</c:forEach>
+		
 	</ul>
 	<input type="submit" value="valider" class="bouton" />
 	</form>

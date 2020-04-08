@@ -8,10 +8,19 @@
 </head>
 <body>
 <h1>Page d'aministation</h1>
-<h2>Consulter un questionnaire</h2>
-<form action="viewQuestionnaire" method="get">
-	Nom questionnaire: <input type="text" required name="nomQ" /><br />
-	<input type="submit" value="valider" class="bouton" />
-</form>
+<div id=gauche>	
+	<h2>Consulter un questionnaire</h2>
+	<form action="viewQuestionnaire" method="get">
+		Nom questionnaire: <input type="text" required name="nomQ" /><br />
+		<input type="submit" value="valider" class="bouton" />
+	</form>
+</div>
+<div id=droite>
+	<h2>Créer un questionnaire</h2>
+	<form action="creerQuestionnaire" method="get">
+		Nom questionnaire: <input type="text" required name="nomQ" /><br />
+		<input type="submit" value="valider" class="bouton" />
+	</form>
+</div>
 </body>
 </html>

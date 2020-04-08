@@ -14,7 +14,7 @@
 <c:if test = "${empty requestScope.error}">
 	<h1>Reponse "${requestScope.reponse}" ajoutée</h1>
 	Vous allez être redirigé. 
-	<meta http-equiv="refresh" content="5;URL=http://localhost:8080/projet/admin">
+	<meta http-equiv="refresh" content="5;URL=http://localhost:8080/projet/viewQuestionnaire?nomQ=${requestScope.nomQ}">
 </c:if>
 </body>
 </html>

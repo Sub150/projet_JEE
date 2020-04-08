@@ -16,7 +16,12 @@
 
 	<h1>Reponses au questionnaire ${requestScope.nomQuest}</h1>
 	
-	<c:forEach items="${requestScope.ListeQuest}" var="quest"> 
+	<c:forEach items="${requestScope.ListeQuestF}" var="quest"> 
+		<h3>${quest.intitule}</h3>
+		Vous avez repondu ${requestScope.repD[quest.num] }</br>
+		Votre reponse est <b>${requestScope.testRep[quest.num]}</b>
+	</c:forEach>
+	<c:forEach items="${requestScope.ListeQuestO}" var="quest"> 
 		<h3>${quest.intitule}</h3>
 		Vous avez repondu ${requestScope.repD[quest.num] }</br>
 		Votre reponse est <b>${requestScope.testRep[quest.num]}</b>

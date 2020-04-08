@@ -14,7 +14,8 @@ import javax.persistence.Table;
 @Entity
 public class Questionnaire implements java.io.Serializable{
 	@Id private String nom;
-	@OneToMany(fetch=FetchType.EAGER) private Set<Question> questions ; 
+	@OneToMany(fetch=FetchType.EAGER) private Set<QuestionFermee> questionsFermees ; 
+	@OneToMany(fetch=FetchType.EAGER) private Set<QuestionOuverte> questionsOuvertes ; 
 	
 	
 	
@@ -30,19 +31,32 @@ public class Questionnaire implements java.io.Serializable{
 
 
 
-	public Set<Question> getQuestions() {
-		return questions;
+	public Set<QuestionOuverte> getQuestionsOuvertes() {
+		return questionsOuvertes;
+	}
+	
+	public Set<QuestionFermee> getQuestionsFermees() {
+		return questionsFermees;
 	}
 
 
 
-	public void setQuestions(Set<Question> questions) {
-		this.questions = questions;
+	public void setQuestionsOuvertes(Set<QuestionOuverte> questions) {
+		this.questionsOuvertes = questions;
 	}
 
+	public void setQuestionsFermees(Set<QuestionFermee> questions) {
+		this.questionsFermees = questions;
+	}
 
-	public void addQuestion(Question question) {
-		questions.add(question);
+	
+
+	public void addQuestionOuverte(QuestionOuverte question) {
+		questionsOuvertes.add(question);
+	}
+	
+	public void addQuestionFermee(QuestionFermee question) {
+		questionsFermees.add(question);
 	}
 
 	public Questionnaire() {}

@@ -4,7 +4,8 @@ package client ;
  import javax.naming.InitialContext;
 import javax.naming.NamingException ;
 
-import ejb.entites.Question;
+import ejb.entites.QuestionFermee;
+import ejb.entites.QuestionOuverte;
 import ejb.entites.Questionnaire;
 import ejb.entites.Reponse;
 import ejb.sessions.QuestionDejaAjouteeException;
@@ -13,11 +14,9 @@ import ejb.sessions.QuestionnaireDejaCreeException;
 import ejb.sessions.QuestionnaireInconnuException;
 import ejb.sessions.ReponseDejaAjouteeException;
 import ejb.sessions.ReponseInconnueException;
-import ejb.sessions.ReponseValideUniquementException;
 import ejb.sessions.ServiceQuestionnaires;
 import ejb.sessions.ServiceQuestionnaires.TypeSpec;
 import ejb.sessions.ServiceQuestionnairesRemote;
-import ejb.sessions.UneReponseParQuestionOuverteException;
 import ejb.sessions.UneReponseValideParQuesitonRadioException;
 
 
@@ -60,21 +59,21 @@ public class Main {
 			 System.err.println("Questionnaire inconnu");
 		 } 
 		 try {
-			 service.addQuestion("serieTV", TypeSpec.OUVERTE, "Combien de sucres met Jhon Steed dans son the?");
+			 service.addQuestionOuverte("serieTV","Combien de sucres met Jhon Steed dans son the?", "3");
 		 } catch ( QuestionDejaAjouteeException e) {
 			 System.err.println("Question deja ajoutee");
 		 } catch ( QuestionnaireInconnuException e) {
 			 System.err.println("Question inconnue");
 		 }
 		 try {
-			 service.addQuestion("serieTV", TypeSpec.RADIO, "Quel est le titre original de la serie 'Chapeau Melon et bottes de cuir'");
+			 service.addQuestionFermee("serieTV", TypeSpec.RADIO, "Quel est le titre original de la serie 'Chapeau Melon et bottes de cuir'?");
 		 } catch ( QuestionDejaAjouteeException e) {
 			 System.err.println("Question deja ajoutee");
 		 } catch ( QuestionnaireInconnuException e) {
 			 System.err.println("Question inconnue");
 		 }
 		 try {
-			 service.addQuestion("serieTV", TypeSpec.CHECKBOX, "Est-ce que les actrices suivantes ont joue dans la serie 'Chapeau Melon et bottes de cuir'");
+			 service.addQuestionFermee("serieTV", TypeSpec.CHECKBOX, "Est-ce que les actrices suivantes ont joue dans la serie 'Chapeau Melon et bottes de cuir'?");
 		 } catch ( QuestionDejaAjouteeException e) {
 			 System.err.println("Question deja ajoutee");
 		 } catch ( QuestionnaireInconnuException e) {
@@ -83,7 +82,9 @@ public class Main {
 		 
 		 System.out.println("Affichons la liste des questions de serieTV");
 		 try {
-			 for ( Question q : service.getQuestionnaire("serieTV").getQuestions() )
+			 for ( QuestionFermee q : service.getQuestionnaire("serieTV").getQuestionsFermees() )
+				 System.out.println("Question : "+q.getIntitule());
+			 for ( QuestionOuverte q : service.getQuestionnaire("serieTV").getQuestionsOuvertes() )
 				 System.out.println("Question : "+q.getIntitule());
 		 } catch (QuestionnaireInconnuException e) {
 			 System.err.println("Questionnaire inconnu");
@@ -93,25 +94,17 @@ public class Main {
 		 System.out.println("Ajoutons maintenant des reponses aux questions");
 		 
 		 try {
-			 System.out.println("0");
-			 service.addReponse(1, "3", true);
-			 System.out.println("1");
-			 service.addReponse(2, "Dexter", false);
-			 System.out.println("2");
-			 service.addReponse(2, "Wild wild west", false); System.out.println("3");
-			 service.addReponse(2, "The Avengers", true); System.out.println("4");
-			 service.addReponse(3, "Linda Thornson", true); System.out.println("5");
-			 service.addReponse(3, "Uma Thruman", false);System.out.println("6");
-			 service.addReponse(3, "Diana Rigg", true); System.out.println("7");
+			 service.addReponseFermee(2, "Dexter", false);
+			 service.addReponseFermee(2, "Wild wild west", false); 
+			 service.addReponseFermee(2, "The Avengers", true); 
+			 service.addReponseFermee(3, "Linda Thornson", true); 
+			 service.addReponseFermee(3, "Uma Thruman", false);
+			 service.addReponseFermee(3, "Diana Rigg", true); 
 	
 		 } catch ( ReponseDejaAjouteeException e) {
 			 System.err.println("Reponse deja ajoutee");
 		 } catch ( QuestionInconnueException e) {
 			 System.err.println("Question inconnue");
-		 } catch (UneReponseParQuestionOuverteException e) {
-			 System.err.println("On ne peut ajouter qu'une reponse par question ouverte");
-		 } catch (ReponseValideUniquementException e) {
-			 System.err.println("On ne peut ajouter qu'une reponse valide a une question ouverte");
 		 } catch (UneReponseValideParQuesitonRadioException e) {
 			 System.err.println("On ne peut ajouter qu'une seule reponse valide a une question radio");
 		 }
