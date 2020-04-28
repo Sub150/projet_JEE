@@ -16,7 +16,7 @@ public interface ServiceQuestionnaires {
 	
 	public void addQuestionFermee(String questionnaire, TypeSpec type, String intitule )  throws QuestionnaireInconnuException, QuestionDejaAjouteeException ;
 	
-	public void addQuestionnaire(String questionnaire) throws QuestionnaireDejaCreeException;
+	//public void addQuestionnaire(String questionnaire) throws QuestionnaireDejaCreeException;
 	
 	public void addQuestionOuverte(String questionnaire, String intitule, String reponse) throws QuestionnaireInconnuException, QuestionDejaAjouteeException; //Ajouter au bean
 	
@@ -28,14 +28,12 @@ public interface ServiceQuestionnaires {
 	
 	public Collection<QuestionFermee> getQuestionsFermees();
 	
-	public Collection<Reponse> getReponses();
-	
 	public boolean testReponseFermee(int num, String[] reponses)throws QuestionInconnueException;
 	
 	public boolean testReponseOuverte(int num, String reponse) throws QuestionInconnueException ; 
 	
 	
-	public enum TypeSpec {OUVERTE, RADIO, CHECKBOX} ;
+	public enum TypeSpec {RADIO, CHECKBOX} ;
 }
 	
 

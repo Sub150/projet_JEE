@@ -4,7 +4,6 @@
     <fullyQualifiedTypeName name="javax.persistence.GeneratedValue"/>
     <fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
     <fullyQualifiedTypeName name="javax.persistence.FetchType"/>
-    <fullyQualifiedTypeName name="javax.persistence.Table"/>
     <fullyQualifiedTypeName name="javax.persistence.Entity"/>
     <fullyQualifiedTypeName name="java.util.Collection"/>
     <fullyQualifiedTypeName name="javax.ejb.Local"/>
@@ -24,7 +23,6 @@
     <fullyQualifiedTypeName name="ejb.sessions.ReponseInconnueException"/>
     <fullyQualifiedTypeName name="ejb.sessions.ReponseDejaAjouteeException"/>
     <fullyQualifiedTypeName name="ejb.sessions.QuestionInconnueException"/>
-    <fullyQualifiedTypeName name="java.util.TreeSet"/>
     <fullyQualifiedTypeName name="ejb.entites.Questionnaire"/>
     <fullyQualifiedTypeName name="ejb.sessions.ServiceQuestionnairesRemote"/>
     <fullyQualifiedTypeName name="javax.persistence.OneToOne"/>
@@ -39,4 +37,6 @@
     <fullyQualifiedTypeName name="ejb.sessions.ServiceQuestionnaires.TypeSpec"/>
     <fullyQualifiedTypeName name="ejb.sessions.UneReponseParQuestionOuverteException"/>
     <fullyQualifiedTypeName name="ejb.sessions.ReponseValideUniquementException"/>
+    <fullyQualifiedTypeName name="javax.persistence.Table"/>
+    <fullyQualifiedTypeName name="java.util.TreeSet"/>
 </qualifiedTypeNameHistroy>

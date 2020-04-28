@@ -54,13 +54,13 @@ public class ServiceQuestionnairesBean implements ServiceQuestionnairesRemote, S
 		return result;
 	}
 	
-	@Override
+/*	@Override
 	public Collection<Reponse> getReponses() {
 		String req = "from Reponse";
 		Query q = em.createQuery(req);
 		Collection<Reponse> result = (Collection<Reponse>)q.getResultList();
 		return result;
-	}
+	} */
 	
 	@Override
 	public QuestionFermee getQuestionFermee(int id) throws QuestionInconnueException {
@@ -114,7 +114,7 @@ public class ServiceQuestionnairesBean implements ServiceQuestionnairesRemote, S
 	public void addQuestionOuverte(String questionnaire, String intitule, String reponse) throws QuestionnaireInconnuException, QuestionDejaAjouteeException {
 		for ( QuestionOuverte q : this.getQuestionnaire(questionnaire).getQuestionsOuvertes() )
 		{
-			if (q.getIntitule()==intitule) 
+			if (q.getIntitule().equals(intitule)) 
 				throw new QuestionDejaAjouteeException();
 		}
 		QuestionOuverte q = new QuestionOuverte();
@@ -147,7 +147,7 @@ public class ServiceQuestionnairesBean implements ServiceQuestionnairesRemote, S
 		
 	}
 	
-	@Override 
+/*	@Override 
 	public void addQuestionnaire(String questionnaire) throws QuestionnaireDejaCreeException {
 		for (Questionnaire q : this.getQuestionnaires()) {
 			if (q.getNom().equals(questionnaire)) {
@@ -158,7 +158,7 @@ public class ServiceQuestionnairesBean implements ServiceQuestionnairesRemote, S
 		q.setNom(questionnaire);
 		em.persist(q);
 	}
-	
+	*/
 	@Override 
 	public boolean testReponseOuverte(int num, String reponse) throws QuestionInconnueException {
 		QuestionOuverte q = this.getQuestionOuverte(num);
@@ -174,11 +174,9 @@ public class ServiceQuestionnairesBean implements ServiceQuestionnairesRemote, S
 		for (String r : reponses) {
 			for ( Reponse rp : q.getReponses()) {
 				if ( r.equals(rp.getReponse()) && !(rp.isValide()) ) {
-					System.out.println("C pas normal");
 					return false;
 				}
 				else if ( r.equals(rp.getReponse()) && (rp.isValide()) ) {
-					System.out.println("on incremente");
 					cpt ++;
 				}
 			}
