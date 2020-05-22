@@ -2,7 +2,7 @@
 
 objectif : 
 
-Le but du projet consiste `a d´evelopper une application JEE qui permet de g´en´erer des questionnaires web et d’´evaluer les r´eponses.
+Le but du projet consiste à développer une application JEE qui permet de générer des questionnaires web et d’évaluer les réponses.
 
 
 Compétences : 
